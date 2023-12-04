@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Página con Header</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #F47920;
+            color: #fff;
+            text-align: center;
+            width: 99%;
+            margin: 0 auto;
+            display: flex;
+    flex-direction: row;
+    align-items: center;
+
+        }
+        header h1 {
+            font-size: 1em; /* Ajusta el tamaño del texto según tus preferencias */
+            margin-right: 20%; /* Elimina el margen predeterminado del encabezado */
+            display: flex;
+        }
+        header img.header {
+            max-width: 50px; /* Ajusta el ancho máximo de la imagen según tus necesidades */
+            margin-right: 5%; /* Agrega un pequeño espacio a la derecha de la imagen */
+            margin-left: 50px;
+        }
+        .form-container {
+            display: flex;
+            justify-content: space-around;
+    
+    margin: 80px;
+    max-width: 1300px;
+        }
+        .form-column {
+            flex: 1;
+    margin: 0 100px;
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+          
+        }
+        .form-column label,
+        .form-column input,
+        .form-column select {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .form-column label {
+            width: 150px; /* Establece el ancho fijo para los labels */
+            margin: 0 10px;
+        }
+        #enviarBtn {
+            margin-top: 20px;
+            background-color: #F47920;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 4%;
+        }
+        input, select {
+        width: 200px; /* Ajusta el ancho según tus necesidades */
+    }
+    </style>
+</head>
+<body>
+
+    <div class="encabezado">
+        <header>
+            <img src="pravia.png" alt="Logo de Pravia Incident Management" class="header">
+            <h1>Pravia Incident Management</h1>
+        </header>
+    </div>
+</div>
+
+<div class="form-container">
+    <div class="form-column">
+        <!-- Contenido de la primera columna del formulario -->
+        <label for="campo1">Incident Name:</label>
+<input type="text" id="campo1" name="Incident Name">
+        <label for="campo2">Primary incident type:</label>
+        <select id="campo2" name="campo2">
+            <option value="Denial of services attack">Denial of services attack</option>
+            <option value="Malware">Malware</option>
+            <option value="Information Asset (Property) loss or Theft">Information Asset (Property) loss or Theft</option>
+            <option value="Information Disclosure">Information Disclosure</option>
+            <option value="Misuse">Misuse</option>
+            <option value="Outage or Disruption">Outage or Disruption</option>
+            <option value="Social engineering phising">Social engineering phising</option>
+            <option value="Unauthorized access">Unauthorized access</option>
+            <option value="Unauthorized data destruction">Unauthorized data destruction</option>
+            <!-- Puedes agregar más opciones según sea necesario -->
+        </select>
+        <label for="campo3">Primary Incident Description:</label>
+        <input type="text" id="campo3" name="campo3">
+        <label for="campo4">Severity:</label>
+        <select id="campo4" name="campo4">
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+            <option value="Informational">Informational</option>
+        </select>
+        <label for="campo5">Customer Name:</label>
+        <input type="text" id="campo5" name="campo5">
+    </div>
+    <div class="form-column">
+        <!-- Contenido de la segunda columna del formulario -->
+        <label for="campo6">Customer Phone:</label>
+        <input type="text" id="campo6" name="Customer Phone">
+        <label for="campo7">Customer Contact Email:</label>
+        <input type="text" id="campo7" name="Customer Contact Email">
+        <label for="campo8">HIPAA Covered Entity:</label>
+        <input type="text" id="campo8" name="HIPAA Covered Entity">
+
+    </div>
+</div>
+<button id="enviarBtn" onclick="enviarFormulario()">Enviar</button>
+
+    <script>
+        function enviarFormulario() {
+            // Obtener los valores de los campos y mostrarlos en la consola
+            for (let i = 1; i <= 10; i++) {
+                let campo = document.getElementById(`campo${i}`).value;
+                console.log(`Campo ${i}: ${campo}`);
+            }
+        }
+    </script>
+</body>
+</html>
