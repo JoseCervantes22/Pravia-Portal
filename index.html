@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pravia Incident</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #F47920;
+            color: #fff;
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1em;
+            margin-right: 20%;
+            display: flex;
+        }
+
+        header img.header {
+            max-width: 50px;
+            margin-right: 5%;
+            margin-left: 50px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 80px;
+            max-width: 1300px;
+        }
+
+        .form-column {
+            flex: 1;
+            margin: 0 100px;
+            text-align: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .form-column label,
+        .form-column input,
+        .form-column select {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .form-column label {
+            width: 150px;
+            margin: 0 10px;
+        }
+
+        #enviarBtn {
+            margin-top: 20px;
+            background-color: #F47920;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 4%;
+        }
+
+        input,
+        select {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="encabezado">
+        <header>
+            <img src="pravia.png" alt="Logo de Pravia Incident Management" class="header">
+            <h1>Pravia Incident Management</h1>
+        </header>
+    </div>
+    <div class="form-container">
+        <div class="form-column">
+            <!-- Contenido de la primera columna del formulario -->
+            <label for="campo1">Incident Name:</label>
+            <input type="text" id="campo1" name="Incident Name">
+            <label for="campo2">Primary incident type:</label>
+            <select id="campo2" name="campo2">
+                <option value="1">Denial of services attack</option>
+                <option value="2">Malware</option>
+                <option value="3">Information Asset (Property) loss or Theft</option>
+                <option value="4">Information Disclosure</option>
+                <option value="5">Misuse</option>
+                <option value="6">Outage or Disruption</option>
+                <option value="7">Social engineering phishing</option>
+                <option value="8">Unauthorized access</option>
+                <option value="9">Unauthorized data destruction</option>
+            </select>
+            <label for="campo3">Primary Incident Description:</label>
+            <input type="text" id="campo3" name="campo3">
+            <label for="campo4">Severity:</label>
+            <select id="campo4" name="campo4">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+                <option value="4">Informational</option>
+            </select>
+            <label for="campo5">Customer Name:</label>
+            <input type="text" id="campo5" name="campo5">
+        </div>
+        <div class="form-column">
+            <!-- Contenido de la segunda columna del formulario -->
+            <label for="campo6">Customer Phone:</label>
+            <input type="text" id="campo6" name="Customer Phone">
+            <label for="campo7">Customer Contact Email:</label>
+            <input type="text" id="campo7" name="Customer Contact Email">
+            <label for="campo8">HIPAA Covered Entity:</label>
+            <input type="checkbox" id="campo8" name="HIPAA Covered Entity">
+        </div>
+    </div>
+    <button id="enviarBtn">Enviar</button>
+
+    <script>
+       document.getElementById('enviarBtn').addEventListener('click', function() {
+    enviarFormulario();
+});
+
+function enviarFormulario() {
+    // Crear un objeto para almacenar los valores del formulario
+    let formData = {};
+
+    // Obtener los valores de los campos y almacenarlos en el objeto
+    formData["Incident Name"] = document.getElementById("campo1").value;
+    formData["Primary Incident Type"] = document.getElementById("campo2").value;
+    formData["Primary Incident Description"] = document.getElementById("campo3").value;
+    formData["Severity"] = document.getElementById("campo4").value;
+    formData["Customer Name"] = document.getElementById("campo5").value;
+    formData["Customer Phone"] = document.getElementById("campo6").value;
+    formData["Customer Contact Email"] = document.getElementById("campo7").value;
+
+    // Cambiar el valor de "HIPAA Covered Entity" a una cadena de texto ("true" o "false")
+    formData["HIPAA Covered Entity"] = document.getElementById("campo8").checked ? "true" : "false";
+
+    // Enviar datos al servidor
+    fetch('https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Verificar si la respuesta tiene contenido antes de intentar analizarla como JSON
+            return response.text().then(text => {
+                return text ? JSON.parse(text) : null;
+            });
+        } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+    })
+    .then(data => {
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
+
+    </script>
+</body>
+
+</html>
