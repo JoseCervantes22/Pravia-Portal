@@ -74,6 +74,20 @@
             cursor: pointer;
             margin-left: 4%;
         }
+        #mensaje {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 250px;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #F47920;
+            color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
 
         input,
         select {
@@ -129,12 +143,21 @@
         </div>
     </div>
     <button id="enviarBtn">Enviar</button>
-
+    <div id="mensaje"></div>
     <script>
        document.getElementById('enviarBtn').addEventListener('click', function() {
     enviarFormulario();
 });
+function mostrarMensaje(mensaje) {
+            // Mostrar el mensaje en el cuadro naranja
+            const mensajeElemento = document.getElementById('mensaje');
+            mensajeElemento.innerText = mensaje;
+            mensajeElemento.style.display = 'block';
 
+            mensajeElemento.addEventListener('click', function() {
+                mensajeElemento.style.display = 'none';
+            });
+        }
 function enviarFormulario() {
     // Crear un objeto para almacenar los valores del formulario
     let formData = {};
@@ -160,20 +183,21 @@ function enviarFormulario() {
         body: JSON.stringify(formData),
     })
     .then(response => {
-        if (response.ok) {
-            // Verificar si la respuesta tiene contenido antes de intentar analizarla como JSON
-            return response.text().then(text => {
-                return text ? JSON.parse(text) : null;
+                if (response.ok) {
+                    // Muestra un mensaje en la pantalla
+                    mostrarMensaje("Incident Submitted..✔");
+
+                    setTimeout(function() {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
-        } else {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-    })
-    .then(data => {
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        
 }
 
 
