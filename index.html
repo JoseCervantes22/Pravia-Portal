@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #D9D9D9;
         }
 
         header {
@@ -38,8 +39,11 @@
         .form-container {
             display: flex;
             justify-content: space-around;
-            margin: 80px;
-            max-width: 1300px;
+            margin: 40px;
+            max-width: 1500px;
+            background-color: white;
+            border-radius: 10px;
+            height: 600px;
         }
 
         .form-column {
@@ -65,7 +69,7 @@
         }
 
         #enviarBtn {
-            margin-top: 20px;
+            margin-top: 5px;
             background-color: #F47920;
             color: #fff;
             padding: 10px 20px;
@@ -74,6 +78,7 @@
             cursor: pointer;
             margin-left: 4%;
         }
+
         #mensaje {
             display: none;
             position: fixed;
@@ -145,60 +150,60 @@
     <button id="enviarBtn">Enviar</button>
     <div id="mensaje"></div>
     <script>
-       document.getElementById('enviarBtn').addEventListener('click', function() {
-    enviarFormulario();
-});
-function mostrarMensaje(mensaje) {
+        document.getElementById('enviarBtn').addEventListener('click', function () {
+            enviarFormulario();
+        });
+        function mostrarMensaje(mensaje) {
             // Mostrar el mensaje en el cuadro naranja
             const mensajeElemento = document.getElementById('mensaje');
             mensajeElemento.innerText = mensaje;
             mensajeElemento.style.display = 'block';
 
-            mensajeElemento.addEventListener('click', function() {
+            mensajeElemento.addEventListener('click', function () {
                 mensajeElemento.style.display = 'none';
             });
         }
-function enviarFormulario() {
-    // Crear un objeto para almacenar los valores del formulario
-    let formData = {};
+        function enviarFormulario() {
+            // Crear un objeto para almacenar los valores del formulario
+            let formData = {};
 
-    // Obtener los valores de los campos y almacenarlos en el objeto
-    formData["Incident Name"] = document.getElementById("campo1").value;
-    formData["Primary Incident Type"] = document.getElementById("campo2").value;
-    formData["Primary Incident Description"] = document.getElementById("campo3").value;
-    formData["Severity"] = document.getElementById("campo4").value;
-    formData["Customer Name"] = document.getElementById("campo5").value;
-    formData["Customer Phone"] = document.getElementById("campo6").value;
-    formData["Customer Contact Email"] = document.getElementById("campo7").value;
+            // Obtener los valores de los campos y almacenarlos en el objeto
+            formData["Incident Name"] = document.getElementById("campo1").value;
+            formData["Primary Incident Type"] = document.getElementById("campo2").value;
+            formData["Primary Incident Description"] = document.getElementById("campo3").value;
+            formData["Severity"] = document.getElementById("campo4").value;
+            formData["Customer Name"] = document.getElementById("campo5").value;
+            formData["Customer Phone"] = document.getElementById("campo6").value;
+            formData["Customer Contact Email"] = document.getElementById("campo7").value;
 
-    // Cambiar el valor de "HIPAA Covered Entity" a una cadena de texto ("true" o "false")
-    formData["HIPAA Covered Entity"] = document.getElementById("campo8").checked ? "true" : "false";
+            // Cambiar el valor de "HIPAA Covered Entity" a una cadena de texto ("true" o "false")
+            formData["HIPAA Covered Entity"] = document.getElementById("campo8").checked ? "true" : "false";
 
-    // Enviar datos al servidor
-    fetch('https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-    })
-    .then(response => {
-                if (response.ok) {
-                    // Muestra un mensaje en la pantalla
-                    mostrarMensaje("Incident Submitted..✔");
-
-                    setTimeout(function() {
-                        location.reload();
-                    }, 2000);
-                } else {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+            // Enviar datos al servidor
+            fetch('https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        
-}
+                .then(response => {
+                    if (response.ok) {
+                        // Muestra un mensaje en la pantalla
+                        mostrarMensaje("Incident Submitted..✔");
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
+                    } else {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        }
 
 
     </script>
