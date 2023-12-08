@@ -6,11 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pravia Incident</title>
     <style>
+        h1 {
+            display: block;
+            font-size: 27px;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #D9D9D9;
+            background-color: #faf8f8;
         }
 
         header {
@@ -18,6 +29,7 @@
             color: #fff;
             text-align: center;
             width: 100%;
+            height: 50px;
             margin: 0 auto;
             display: flex;
             flex-direction: row;
@@ -25,7 +37,7 @@
         }
 
         header h1 {
-            font-size: 1em;
+            font-size: 16px;
             margin-right: 20%;
             display: flex;
         }
@@ -37,19 +49,19 @@
         }
 
         .form-container {
-            display: flex;
+
             justify-content: space-around;
-            margin: 40px;
-            max-width: 1500px;
-            background-color: white;
+            margin: 40px auto;
+            max-width: 1300px;
+
             border-radius: 10px;
-            height: 600px;
+            height: 700px;
         }
 
         .form-column {
             flex: 1;
             margin: 0 100px;
-            text-align: center;
+            text-align: left;
             align-items: center;
             display: flex;
             flex-direction: row;
@@ -66,37 +78,75 @@
         .form-column label {
             width: 150px;
             margin: 0 10px;
+            font-size: 12px;
         }
 
-        #enviarBtn {
-            margin-top: 5px;
+        #submitBtn {
+            margin-top: 20px;
             background-color: #F47920;
             color: #fff;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-left: 4%;
+            margin-left: 38%;
         }
 
-        #mensaje {
+        #message {
             display: none;
             position: fixed;
             top: 50%;
             left: 50%;
-            width: 250px;
+            width: 400px;
+            height: 200px;
             transform: translate(-50%, -50%);
             padding: 20px;
-            background-color: #F47920;
+            background-color: #435f97;
             color: #fff;
-            border-radius: 5px;
             text-align: center;
             cursor: pointer;
+            line-height: 200px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        h3 {
+            margin-top: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: sans-serif;
         }
 
         input,
         select {
-            width: 200px;
+            width: 400px;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            text-align: right;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+
+        textarea {
+            width: 400px;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
         }
     </style>
 </head>
@@ -104,83 +154,103 @@
 <body>
     <div class="encabezado">
         <header>
-            <img src="pravia.png" alt="Logo de Pravia Incident Management" class="header">
-            <h1>Pravia Incident Management</h1>
+            <img src="https://topmexico.org/chatbot/pravia.png" alt="Logo de Pravia Incident Management" class="header">
+            <h1>Pravia External Portal</h1>
         </header>
     </div>
+
+
+
     <div class="form-container">
-        <div class="form-column">
-            <!-- Contenido de la primera columna del formulario -->
-            <label for="campo1">Incident Name:</label>
-            <input type="text" id="campo1" name="Incident Name">
-            <label for="campo2">Primary incident type:</label>
-            <select id="campo2" name="campo2">
-                <option value="1">Denial of services attack</option>
-                <option value="2">Malware</option>
-                <option value="3">Information Asset (Property) loss or Theft</option>
-                <option value="4">Information Disclosure</option>
-                <option value="5">Misuse</option>
-                <option value="6">Outage or Disruption</option>
-                <option value="7">Social engineering phishing</option>
-                <option value="8">Unauthorized access</option>
-                <option value="9">Unauthorized data destruction</option>
-            </select>
-            <label for="campo3">Primary Incident Description:</label>
-            <input type="text" id="campo3" name="campo3">
-            <label for="campo4">Severity:</label>
-            <select id="campo4" name="campo4">
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">High</option>
-                <option value="4">Informational</option>
-            </select>
-            <label for="campo5">Customer Name:</label>
-            <input type="text" id="campo5" name="campo5">
-        </div>
-        <div class="form-column">
-            <!-- Contenido de la segunda columna del formulario -->
-            <label for="campo6">Customer Phone:</label>
-            <input type="text" id="campo6" name="Customer Phone">
-            <label for="campo7">Customer Contact Email:</label>
-            <input type="text" id="campo7" name="Customer Contact Email">
-            <label for="campo8">HIPAA Covered Entity:</label>
-            <input type="checkbox" id="campo8" name="HIPAA Covered Entity">
-        </div>
+        <ul style="list-style-type: none;">
+            <li>
+                <h1>Create a New Incident</h1>
+                <h3>About You</h3>
+                <!-- Contenido de la primera columna del form -->
+                <label for="campo5">Name:</label>
+                <input type="text" id="campo5" name="campo5">
+            </li>
+            <li>
+                <label for="campo6">Phone:</label>
+                <input type="text" id="campo6" name="Customer Phone">
+            </li>
+            <li>
+                <label for="campo7">Email:</label>
+                <input type="text" id="campo7" name="Customer Contact Email">
+            </li>
+        </ul>
+
+        <ul style="list-style-type: none;">
+            <h3>Incident Information</h3>
+            <li>
+                <label for="campo1">Incident Name:</label>
+                <input type="text" id="campo1" name="Incident Name">
+            </li>
+            <li>
+                <label for="campo2">Incident Type:</label>
+                <select id="campo2" name="campo2">
+                    <option value="1">Denial of services attack</option>
+                    <option value="2">Malware</option>
+                    <option value="3">Information Asset (Property) loss or Theft</option>
+                    <option value="4">Information Disclosure</option>
+                    <option value="5">Misuse</option>
+                    <option value="6">Outage or Disruption</option>
+                    <option value="7">Social engineering phishing</option>
+                    <option value="8">Unauthorized access</option>
+                    <option value="9">Unauthorized data destruction</option>
+                </select>
+            </li>
+            <li>
+                <label for="campo3">Description:</label>
+                <textarea rows="4" cols="50" id="campo3" name="campo3"></textarea>
+            </li>
+            <li>
+                <label for="campo4">Severity:</label>
+                <select id="campo4" name="campo4">
+                    <option value="1">Low</option>
+                    <option value="2">Medium</option>
+                    <option value="3">High</option>
+                    <option value="4">Informational</option>
+                </select>
+            </li>
+            <li>
+                <label for="campo8">HIPAA Covered Entity:</label>
+                <input type="checkbox" id="campo8" name="HIPAA Covered Entity">
+            </li>
+            <li>
+                <label for="file">File:</label>
+                <input type="file" id="file" name="documento">
+        </ul>
+        <button id="submitBtn">Submit</button>
+        <div id="message"></div>
     </div>
-    <button id="enviarBtn">Enviar</button>
-    <div id="mensaje"></div>
+
+
     <script>
-        document.getElementById('enviarBtn').addEventListener('click', function () {
-            enviarFormulario();
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            submitform();
         });
-        function mostrarMensaje(mensaje) {
-            // Mostrar el mensaje en el cuadro naranja
-            const mensajeElemento = document.getElementById('mensaje');
-            mensajeElemento.innerText = mensaje;
-            mensajeElemento.style.display = 'block';
 
-            mensajeElemento.addEventListener('click', function () {
-                mensajeElemento.style.display = 'none';
-            });
-        }
-        function enviarFormulario() {
-            // Crear un objeto para almacenar los valores del formulario
-            let formData = {};
+        async function submitform() {
+            let formData = {
+                "Incident Name": document.getElementById("campo1").value,
+                "Primary Incident Type": document.getElementById("campo2").value,
+                "Primary Incident Description": document.getElementById("campo3").value,
+                "Severity": document.getElementById("campo4").value,
+                "Customer Name": document.getElementById("campo5").value,
+                "Customer Phone": document.getElementById("campo6").value,
+                "Customer Contact Email": document.getElementById("campo7").value,
+                "file": await getFileContent(document.getElementById("file")),
+                "HIPAA Covered Entity": document.getElementById("campo8").checked ? "true" : "false"
+            };
 
-            // Obtener los valores de los campos y almacenarlos en el objeto
-            formData["Incident Name"] = document.getElementById("campo1").value;
-            formData["Primary Incident Type"] = document.getElementById("campo2").value;
-            formData["Primary Incident Description"] = document.getElementById("campo3").value;
-            formData["Severity"] = document.getElementById("campo4").value;
-            formData["Customer Name"] = document.getElementById("campo5").value;
-            formData["Customer Phone"] = document.getElementById("campo6").value;
-            formData["Customer Contact Email"] = document.getElementById("campo7").value;
+            const url = "https://prod-130.westus.logic.azure.com/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE";
 
-            // Cambiar el valor de "HIPAA Covered Entity" a una cadena de texto ("true" o "false")
-            formData["HIPAA Covered Entity"] = document.getElementById("campo8").checked ? "true" : "false";
+            const fileContent = await getFileContent(document.getElementById("file"));
 
-            // Enviar datos al servidor
-            fetch('https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE', {
+            formData.file = fileContent;
+
+            fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -189,12 +259,11 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        // Muestra un mensaje en la pantalla
-                        mostrarMensaje("Incident Submitted..✔");
+                        showmessage("Pravia Incident Management\n\nYour incident has been created. A member of our team will contact you shortly.\n\n Incident Submitted. ✔");
 
                         setTimeout(function () {
                             location.reload();
-                        }, 2000);
+                        }, 4000);
                     } else {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
@@ -202,9 +271,29 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
-
         }
 
+        function getFileContent(fileInput) {
+            const file = fileInput.files[0];
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    resolve(reader.result.split(',')[1]); // Obtener solo el contenido base64, excluyendo la parte de la cabecera
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function showmessage(message) {
+            const messageElemento = document.getElementById('message');
+            messageElemento.innerText = message;
+            messageElemento.style.display = 'block';
+
+            messageElemento.addEventListener('click', function () {
+                messageElemento.style.display = 'none';
+            });
+        }
 
     </script>
 </body>
