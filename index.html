@@ -22,6 +22,8 @@
             margin: 0;
             padding: 0;
             background-color: #faf8f8;
+            background-size: cover;
+            background-position: center;
         }
 
         header {
@@ -105,7 +107,6 @@
             color: #fff;
             text-align: center;
             cursor: pointer;
-            line-height: 200px;
         }
 
         ul {
@@ -148,10 +149,148 @@
             display: list-item;
             text-align: -webkit-match-parent;
         }
+
+        img {
+            max-width: 100%;
+            margin-right: 5%;
+            align-self: flex-start;
+        }
+
+        .img-container {
+            position: relative;
+            text-align: center;
+        }
+
+        .img {
+            width: 100%;
+            height: auto;
+        }
+
+        .form-container {
+            /* existing styles */
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .form-container.animated {
+            transform: translateY(0);
+        }
+
+        header {
+            /* existing styles */
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        header.animated {
+            transform: translateX(0);
+        }
+
+        .checkbox {
+            width: 20px;
+        }
     </style>
 </head>
 
 <body>
+    <style>
+        @media (max-width: 500px) {
+            .form-container {
+
+                justify-content: space-around;
+                margin: 40px auto;
+                max-width: 400px;
+                width: 400px;
+                border-radius: 10px;
+                height: 200px;
+            }
+
+            label {
+                display: inline-block;
+                width: 50px;
+                text-align: right;
+                margin-right: 10px;
+                font-size: 12px;
+            }
+
+            input,
+            select {
+                width: 280px;
+                box-sizing: border-box;
+                margin-bottom: 5px;
+            }
+
+            textarea {
+                width: 280px;
+            }
+
+            #message {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                width: 300px;
+                height: 200px;
+                transform: translate(-50%, -50%);
+                padding: 20px;
+                background-color: #435f97;
+                color: #fff;
+                text-align: center;
+                cursor: pointer;
+            }
+
+            h1 {
+                display: block;
+                font-size: 27px;
+                margin-block-start: 0.67em;
+                margin-block-end: 0.67em;
+                margin-inline-start: 0px;
+                margin-inline-end: 0px;
+                font-weight: bold;
+                font-family: sans-serif;
+                margin-left: 10px;
+            }
+
+            h3 {
+                margin-top: 60px;
+                font-size: 24px;
+                font-weight: bold;
+                font-family: sans-serif;
+                margin-left: 10px;
+            }
+
+            body {
+                font-family: sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #faf8f8;
+                background-size: cover;
+                background-position: center;
+                max-width: 100%;
+                margin: 0 auto;
+                box-sizing: border-box;
+            }
+        }
+
+        @media screen and (min-width: 501px) {
+            .img-container .img-mobile {
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .img-container .img-desktop {
+                display: none;
+            }
+        }
+    </style>
+    <div class="img-container">
+
+        <img src="scs.png" alt="Logo de Pravia Incident Management" class="img img-desktop">
+
+
+        <img src="c.jpeg" alt="Logo de Pravia Incident Management" class="img img-mobile">
+    </div>
     <div class="encabezado">
         <header>
             <img src="https://topmexico.org/chatbot/pravia.png" alt="Logo de Pravia Incident Management" class="header">
@@ -166,29 +305,28 @@
             <li>
                 <h1>Create a New Incident</h1>
                 <h3>About You</h3>
-                <!-- Contenido de la primera columna del form -->
-                <label for="campo5">Name:</label>
-                <input type="text" id="campo5" name="campo5">
+                <label for="fieldname">Name:</label>
+                <input type="text" id="fieldname" name="fieldname">
             </li>
             <li>
-                <label for="campo6">Phone:</label>
-                <input type="text" id="campo6" name="Customer Phone">
+                <label for="fieldphone">Phone:</label>
+                <input type="text" id="fieldphone" name="Customer Phone">
             </li>
             <li>
-                <label for="campo7">Email:</label>
-                <input type="text" id="campo7" name="Customer Contact Email">
+                <label for="fieldemail">Email:</label>
+                <input type="text" id="fieldemail" name="Customer Contact Email">
             </li>
         </ul>
 
         <ul style="list-style-type: none;">
             <h3>Incident Information</h3>
             <li>
-                <label for="campo1">Incident Name:</label>
-                <input type="text" id="campo1" name="Incident Name">
+                <label for="fieldincidentname">Incident Name:</label>
+                <input type="text" id="fieldincidentname" name="Incident Name">
             </li>
             <li>
-                <label for="campo2">Incident Type:</label>
-                <select id="campo2" name="campo2">
+                <label for="fieldincidenttype">Incident Type:</label>
+                <select id="fieldincidenttype" name="fieldincidenttype">
                     <option value="1">Denial of services attack</option>
                     <option value="2">Malware</option>
                     <option value="3">Information Asset (Property) loss or Theft</option>
@@ -201,12 +339,12 @@
                 </select>
             </li>
             <li>
-                <label for="campo3">Description:</label>
-                <textarea rows="4" cols="50" id="campo3" name="campo3"></textarea>
+                <label for="fielddescription">Description:</label>
+                <textarea rows="4" cols="50" id="fielddescription" name="fielddescription"></textarea>
             </li>
             <li>
-                <label for="campo4">Severity:</label>
-                <select id="campo4" name="campo4">
+                <label for="fieldseverity">Severity:</label>
+                <select id="fieldseverity" name="fieldseverity">
                     <option value="1">Low</option>
                     <option value="2">Medium</option>
                     <option value="3">High</option>
@@ -214,8 +352,8 @@
                 </select>
             </li>
             <li>
-                <label for="campo8">HIPAA Covered Entity:</label>
-                <input type="checkbox" id="campo8" name="HIPAA Covered Entity">
+                <label for="fieldhipaa">HIPAA Covered Entity:</label>
+                <input type="checkbox" id="fieldhipaa" name="HIPAA Covered Entity" class="checkbox">
             </li>
             <li>
                 <label for="file">File:</label>
@@ -227,28 +365,48 @@
 
 
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const formContainer = document.querySelector('.form-container');
+            const header = document.querySelector('header');
+            formContainer.classList.remove('animated');
+            header.classList.remove('animated');
+            void formContainer.offsetWidth;
+            void header.offsetWidth;
+            formContainer.classList.add('animated');
+            header.classList.add('animated');
+        });
+
         document.getElementById('submitBtn').addEventListener('click', function () {
             submitform();
         });
 
         async function submitform() {
+            let fileNameWithExtension = "";
+            let fileNameWithoutExtension = "";
+            let fileType = "";
+
+            const fileInput = document.getElementById("file");
+            if (fileInput.files.length > 0) {
+                fileNameWithExtension = fileInput.files[0].name;
+                fileNameWithoutExtension = fileNameWithExtension.split('.')[0];
+                fileType = getFileType(fileNameWithExtension);
+            }
+
             let formData = {
-                "Incident Name": document.getElementById("campo1").value,
-                "Primary Incident Type": document.getElementById("campo2").value,
-                "Primary Incident Description": document.getElementById("campo3").value,
-                "Severity": document.getElementById("campo4").value,
-                "Customer Name": document.getElementById("campo5").value,
-                "Customer Phone": document.getElementById("campo6").value,
-                "Customer Contact Email": document.getElementById("campo7").value,
-                "file": await getFileContent(document.getElementById("file")),
-                "HIPAA Covered Entity": document.getElementById("campo8").checked ? "true" : "false"
+                "Incident Name": document.getElementById("fieldincidentname").value,
+                "Primary Incident Type": document.getElementById("fieldincidenttype").value,
+                "Primary Incident Description": document.getElementById("fielddescription").value,
+                "Severity": document.getElementById("fieldseverity").value,
+                "Customer Name": document.getElementById("fieldname").value,
+                "Customer Phone": document.getElementById("fieldphone").value,
+                "Customer Contact Email": document.getElementById("fieldemail").value,
+                "HIPAA Covered Entity": document.getElementById("fieldhipaa").checked ? "true" : "false",
+                "Content Type": fileType,
+                "File Name": fileNameWithoutExtension,
+                "file": fileInput.files.length > 0 ? await getFileContent(fileInput) : null
             };
 
-            const url = "https://prod-130.westus.logic.azure.com/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE";
-
-            const fileContent = await getFileContent(document.getElementById("file"));
-
-            formData.file = fileContent;
+            const url = "https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE";
 
             fetch(url, {
                 method: 'POST',
@@ -259,7 +417,7 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        showmessage("Pravia Incident Management\n\nYour incident has been created. A member of our team will contact you shortly.\n\n Incident Submitted. ✔");
+                        showmessage("\n\nPravia Incident Management\n\nYour incident has been created. A member of our team will contact you shortly.\n\n Incident Submitted. ✔");
 
                         setTimeout(function () {
                             location.reload();
@@ -278,13 +436,42 @@
             return new Promise((resolve, reject) => {
                 const reader = new FileReader();
                 reader.onloadend = () => {
-                    resolve(reader.result.split(',')[1]); // Obtener solo el contenido base64, excluyendo la parte de la cabecera
+                    resolve(reader.result.split(',')[1]);
                 };
                 reader.onerror = reject;
                 reader.readAsDataURL(file);
             });
         }
 
+        function getFileType(fileName) {
+            const extension = fileName.split('.').pop().toLowerCase();
+
+            switch (extension) {
+                case 'pdf':
+                    return 'pdf';
+                case 'csv':
+                    return 'csv';
+                case 'xls':
+                case 'xlsx':
+                    return 'xlsx';
+                case 'png':
+                    return 'png';
+                case 'jpg':
+                case 'jpeg':
+                    return 'jpg';
+                case 'doc':
+                case 'docx':
+                    return 'docx';
+                case 'ppt':
+                case 'pptx':
+                    return 'pptx';
+                case 'xlsm':
+                case 'xlsm':
+                    return 'xlsm';
+                default:
+                    return 'Unknown';
+            }
+        }
         function showmessage(message) {
             const messageElemento = document.getElementById('message');
             messageElemento.innerText = message;
