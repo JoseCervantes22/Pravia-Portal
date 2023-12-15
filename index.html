@@ -406,18 +406,21 @@
                 "file": fileInput.files.length > 0 ? await getFileContent(fileInput) : null
             };
 
-            const url = "https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE";
+            const url =
+                "https://prod-130.westus.logic.azure.com:443/workflows/8e30001aa08c4cbe90c8f4e09e335c59/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=5VHgypyJOEr63UjJVTourqwlejmcf_3mTi5BHcU0HZE";
 
             fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
+                })
                 .then(response => {
                     if (response.ok) {
-                        showmessage("\n\nPravia Incident Management\n\nYour incident has been created. A member of our team will contact you shortly.\n\n Incident Submitted. ✔");
+                        showmessage(
+                            "\n\nPravia Incident Management\n\nYour incident has been created. A member of our team will contact you shortly.\n\n Incident Submitted. ✔"
+                            );
 
                         setTimeout(function () {
                             location.reload();
@@ -472,6 +475,7 @@
                     return 'Unknown';
             }
         }
+
         function showmessage(message) {
             const messageElemento = document.getElementById('message');
             messageElemento.innerText = message;
@@ -481,7 +485,6 @@
                 messageElemento.style.display = 'none';
             });
         }
-
     </script>
 </body>
 
